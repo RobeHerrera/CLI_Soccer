@@ -111,17 +111,24 @@ class Rank(object):
         self.teams[team_name].score += 1
 
     def print_ranking(self):
-        """Generate ordered ranking strings of teams and their points in the table."""
+        """
+        Generate ordered ranking strings of teams and their points in the table.
+
+        Which sorting use according to:
+        https://stackoverflow.com/questions/2705104/lambda-vs-operator-attrgetterxxx-as-a-sort-key-function
+
+        Option 1 (operator.attrgetter()) is faster than Option 2 (use self.item[key])
+        """
         lastPoints = 0
         rank = 1
 
         # Option 1
-        # for team in (sorted(self.teams.values(), key=operator.attrgetter('score'), reverse=True)):
-        #     print(team.name + " : " + str(team.score))
+        for team in (sorted(self.teams.values(), key=operator.attrgetter('score'), reverse=True)):
+            print(team.name + " : " + str(team.score))
 
         # Option 2
-        for team in sorted(self.teams, key=lambda name: self.teams[name].score, reverse=True):
-            print(team)
+        # for team in sorted(self.teams, key=lambda name: self.teams[name].score, reverse=True):
+        #     print(team)
 
         # for index, team in enumerate(sorted(self.teams, cmp=self._rank_comparison), start=1):
         #     points = self.teams[team]
