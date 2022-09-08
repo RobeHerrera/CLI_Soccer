@@ -1,3 +1,4 @@
+import operator
 import re
 from exceptions.soccer_exceptions import IncorrectMatchFormat
 from model.soccer_team import Team
@@ -14,15 +15,13 @@ class Rank(object):
         - Implement for more statistics like, goals, shots, etc.
     """
 
-    instance = None
-
-    def __init__(self):
-        self.teams = {}
-
     def __new__(cls):
         if not hasattr(cls, 'instance'):
             cls.instance = super(Rank, cls).__new__(cls)
         return cls.instance
+
+    def __init__(self):
+        self.teams = {}
 
     @staticmethod
     def _read_file(file):
@@ -61,13 +60,10 @@ class Rank(object):
         with open(file) as f:
             for line in f:
                 line = line.strip('\n')
-
-                # Process each line in the file
-                print("processing line> ", line)
+                # Process each match
                 team = ()
                 score = ()
                 for teamResult in line.split(','):
-                    print(teamResult)
                     try:
                         # Return only the name team
                         team += re.search("(\S+.*)\s+\d+\s*$", teamResult).group(1),
@@ -82,7 +78,7 @@ class Rank(object):
         """
         Adding points to the correspond team
         """
-
+        # pass
         matches = self._read_file(file)
         for teamResult in matches:
             # Object Team() can be scalable
@@ -96,10 +92,8 @@ class Rank(object):
 
             # Add Team Object in to the Dictionary
             if home_team_name not in self.teams.keys():
-                print("No esta, agregar: " + home_team_name)
                 self.teams[home_team_name] = Team(teamResult["homeTeam"])
             if visit_team_name not in self.teams.keys():
-                print("No esta, agregar: " + visit_team_name)
                 self.teams[visit_team_name] = Team(teamResult["visitTeam"])
 
             # Record result match
@@ -116,6 +110,23 @@ class Rank(object):
     def _record_tie(self, team_name):
         self.teams[team_name].score += 1
 
-    @classmethod
-    def print_ranking(cls):
-        pass
+    def print_ranking(self):
+        """Generate ordered ranking strings of teams and their points in the table."""
+        lastPoints = 0
+        rank = 1
+
+        # Option 1
+        # for team in (sorted(self.teams.values(), key=operator.attrgetter('score'), reverse=True)):
+        #     print(team.name + " : " + str(team.score))
+
+        # Option 2
+        for team in sorted(self.teams, key=lambda name: self.teams[name].score, reverse=True):
+            print(team)
+
+        # for index, team in enumerate(sorted(self.teams, cmp=self._rank_comparison), start=1):
+        #     points = self.teams[team]
+        #     if points != lastPoints:
+        #         rank = index
+        #     points_string = "pt" if points == 1 else "pts"
+        #     yield "%d. %s, %d %s" % (rank, team, points, points_string)
+        #     lastPoints = points

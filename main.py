@@ -28,10 +28,11 @@ class SoccerShell(cmd.Cmd):
         if len(arg) == 1:
             file = arg
             print(f"Loading file {file}")
-            self.rank.record_result(file)
+            # self.rank.record_result(file)
         else:
             print("no argus load")
             self.rank.record_result('inputs/input2.txt')
+            self.rank.print_ranking()
 
     def do_quit(self, arg):
         """
@@ -48,7 +49,7 @@ class SoccerShell(cmd.Cmd):
         """
         if arg:
             league = arg[0]
-            print(Rank.print_ranking())
+            print(self.rank.print_ranking())
 
         else:
             print('leagues ...')
