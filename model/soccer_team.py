@@ -3,12 +3,22 @@ class Team:
     Model for soccer team.
     Scalable class to be able to add more member and methods like:
         - Number of players
-        - Statistics
-        -
+        - Player's names
+        - Player's positions
+        - Goals
+        - Shots
+        - And more statistics
     """
-    def __int__(self, name, score=0):
+
+    def __init__(self, name, score=0):
         self.name = name
         self.score = score
 
-    def add_score(self, score):
-        self.score += score
+    def __str__(self):
+        return f"{self.name}:{self.score}"
+
+    def __repr__(self):
+        return f"Team({self.name}:{self.score})"
+
+    def __iter__(self):
+        return self.name

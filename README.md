@@ -36,16 +36,19 @@ Console output
 ## Usage
 `python soccer_stands.py` to start the CLI loop
 
-### TODO:
-- Use Docker Container to be platform independent.
+### CHARACTERISTICS
 - Can be used also with Python Virtual Environment.
-- Can accept .txt input file as a parameter or manually introduce data.
 - Scalable to use any Python Framework as Django or Flask.
+- Singleton to maintain the only one league statistics (can be change to have multiple leagues)
 - Scalable to add more statistics to each team
-- Testable see the folder UnitTest for more reference.
 - PEP8 as a coding guideline.
 - Use CMD library to improve the user experience.
-- Full test coverage (using coverage library).
 - Handling errors. 
+
+### TODO:
+- Can accept .txt input file as a parameter or manually introduce data.
+- Testable see the folder UnitTest for more reference.
+- Full test coverage (using coverage library).
+- Use Docker Container to be platform independent.
 
 

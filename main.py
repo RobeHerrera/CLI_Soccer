@@ -1,7 +1,7 @@
 #! /usr/bin/python
 import cmd
 import sys
-from model.league_table import Rank
+from model.league_stats import Rank
 
 
 class SoccerShell(cmd.Cmd):
@@ -28,23 +28,10 @@ class SoccerShell(cmd.Cmd):
         if len(arg) == 1:
             file = arg
             print(f"Loading file {file}")
+            self.rank.record_result(file)
         else:
             print("no argus load")
-            with open('inputs/input2.txt') as f:
-                # lines = f.readline()
-                # for line in lines:
-                for line in f:
-                    line = line.strip('\n')
-                    print("processing line> ", line)
-                    self.rank.record_result(line)
-            # ## Me gusto este generador para usar afuera en un "for" ##
-            # def lineGenerator():
-            #     with open(args.file) as f:
-            #         for line in f:
-            #             yield line
-            # return lineGenerator()
-
-            # print("Error in command 'load' please check arguments ")
+            self.rank.record_result('inputs/input2.txt')
 
     def do_quit(self, arg):
         """
@@ -61,7 +48,7 @@ class SoccerShell(cmd.Cmd):
         """
         if arg:
             league = arg[0]
-            print(league, 'seasons: ...')
+            print(Rank.print_ranking())
 
         else:
             print('leagues ...')
