@@ -1,6 +1,5 @@
 #! /usr/bin/python
 import cmd
-import sys
 from model.league_stats import Rank
 
 
@@ -30,9 +29,9 @@ class SoccerShell(cmd.Cmd):
             print(f"Loading file {file}")
             # self.rank.record_result(file)
         else:
-            print("no argus load")
-            self.rank.record_result('inputs/input2.txt')
-            self.rank.print_ranking()
+            print("Using default file (inputs/input1.txt) ... ")
+            self.rank.record_result('inputs/input1.txt')
+
 
     def do_quit(self, arg):
         """
@@ -47,12 +46,11 @@ class SoccerShell(cmd.Cmd):
         Show last results
             command: results | r
         """
-        if arg:
-            league = arg[0]
-            print(self.rank.print_ranking())
+        if len(self.rank.teams):
+            self.rank.print_ranking()
 
         else:
-            print('leagues ...')
+            print('Please load first a file....')
 
     def emptyline(self):
         """Called when an empty line is entered in response to the prompt.
