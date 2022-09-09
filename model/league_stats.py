@@ -21,7 +21,7 @@ class Rank(object):
         return cls.instance
 
     def __init__(self):
-        self.teams = {}
+        self.rank_teams = {}
 
     @staticmethod
     def _read_file(file):
@@ -29,12 +29,12 @@ class Rank(object):
         Filter data from the txt file and put everything in memory
         Update the table's teams and their points based on a match result.
         REGEX:
-            TEAM: (\S+.*)\s+\d+\s*$ (from the back take the group after the first integer)
+            TEAM: (from the back take the group after the first integer)
                 - Francisco
                 - San Francisco
                 - San Francisco 49
                 - San Francisco 49 er
-            SCORE:(\d+)\s*$ (from the back take the first integer)
+            SCORE: (from the back take the first integer)
                 - 100 <BLANK>
 
         returns:
@@ -74,8 +74,8 @@ class Rank(object):
                         raise MissingInformationTeam(line)
                     # Process each match
                     for teamResult in teams_scores:
-                        team += re.search("(\S+.*)\s+\d+\s*$", teamResult).group(1),
-                        score += int(re.search("(\d+)\s*$", teamResult).group(1)),
+                        team += re.search(r"(\S+.*)\s+\d+\s*$", teamResult).group(1),
+                        score += int(re.search(r"(\d+)\s*$", teamResult).group(1)),
                     matches.append({"homeTeam": team[0], "homeScore": score[0],
                                     "visitTeam": team[1], "visitScore": score[1]})
 
@@ -110,10 +110,10 @@ class Rank(object):
             # This LIST is only for scalability proposes or future implementations
 
             # Add Team Object in to the Dictionary
-            if home_team_name not in self.teams.keys():
-                self.teams[home_team_name] = Team(teamResult["homeTeam"])
-            if visit_team_name not in self.teams.keys():
-                self.teams[visit_team_name] = Team(teamResult["visitTeam"])
+            if home_team_name not in self.rank_teams.keys():
+                self.rank_teams[home_team_name] = Team(teamResult["homeTeam"])
+            if visit_team_name not in self.rank_teams.keys():
+                self.rank_teams[visit_team_name] = Team(teamResult["visitTeam"])
 
             # Record result match
             if home_team_score == visit_team_score:
@@ -123,12 +123,12 @@ class Rank(object):
                 self._record_win(home_team_name if home_team_score > visit_team_score else visit_team_name)
 
     def _record_win(self, team_name):
-        self.teams[team_name].score += 3
+        self.rank_teams[team_name].score += 3
 
     def _record_tie(self, team_name):
-        self.teams[team_name].score += 1
+        self.rank_teams[team_name].score += 1
 
-    def print_ranking(self):
+    def table_ranking(self):
         """
         Generate ordered ranking strings of teams and their points in the table.
 
@@ -149,8 +149,9 @@ class Rank(object):
         # Using option 1 for sorting
         last_pts = 0
         rank = 1
+        table_str = ""
         for index, team in enumerate(
-                sorted(self.teams.values(), key=operator.attrgetter('score'), reverse=True), start=1):
+                sorted(self.rank_teams.values(), key=operator.attrgetter('score'), reverse=True), start=1):
             # Method when we have a points tie
             if team.score != last_pts:
                 # Rank is equal to the index that's why it start at 1
@@ -158,4 +159,5 @@ class Rank(object):
             # Manage the string when is only one point
             pts_str = "pt" if team.score == 1 else "pts"
             last_pts = team.score
-            print(f"{rank}. {team.name}, {team.score} {pts_str}")
+            table_str += f"{rank}. {team.name}, {team.score} {pts_str}\n"
+        return table_str

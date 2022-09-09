@@ -44,10 +44,10 @@ Console output
 - PEP8 as a coding guideline.
 - Use CMD library to improve the user experience.
 - Handling errors. 
+- Testable see the folder 'tests' for more reference.
 
 ### TODO:
 - Can accept .txt input file as a parameter or manually introduce data.
-- Testable see the folder UnitTest for more reference.
 - Full test coverage (using coverage library).
 - Use Docker Container to be platform independent.
 

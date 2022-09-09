@@ -46,8 +46,8 @@ class SoccerShell(cmd.Cmd):
         Show last results
             command: results | r
         """
-        if len(self.rank.teams):
-            self.rank.print_ranking()
+        if len(self.rank.rank_teams):
+            print(self.rank.table_ranking())
 
         else:
             print('Please load first a file....')
