@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    image: cli_soccer
+    volumes:
+      - ./data:/cli_soccer
+    stdin_open: true
+    tty: true

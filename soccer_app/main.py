@@ -33,7 +33,7 @@ class SoccerShell(cmd.Cmd):
             self.rank.record_result(file)
         else:
             print("Using default file (inputs/input1.txt) ... ")
-            self.rank.record_result('inputs/input2.txt')
+            self.rank.record_result('inputs/input1.txt')
 
     def do_quit(self, arg):
         """

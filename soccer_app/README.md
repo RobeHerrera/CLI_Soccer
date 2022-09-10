@@ -46,7 +46,8 @@ Console output
 - Testable see the folder 'tests' for more reference.
 - Full test coverage 100% (using coverage library).
 
-### TODO:
-- Use Docker Container to be platform independent.
+### Docker:
+- Build Image `docker compose up`
+- Run in interctve mode `docker run -it  cli_soccer`
 
 
