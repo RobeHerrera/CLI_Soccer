@@ -47,7 +47,7 @@ These are the commands available in the app:
 - quit: Exit the application.
 
 ## Examples:
-##### Load
+### Load
 Add a serial of matches to the ranking table
 - Command: `load [FILE]` | `l [FILE]`
 - Example: `load inputs/input1.txt`
@@ -56,7 +56,7 @@ tip:You can type only `load` or `l` to load the default file `inputs/input1.txt`
   - Missing team information.
   - Match format is incorrect.
 
-##### Results
+### Results
 Print the curret ranking table
 - Command: `results` | `r`
 - Example: `r`
@@ -71,13 +71,13 @@ Print the curret ranking table
 - exeptions: If you try to visualize a result with no matches you will get the following output:
 `Please load first a file with matches....`
 
-##### Quit
+### Quit
 Exit the application
 - Command: quit | q
 - Example: `q`
 - Output: `exiting ... `
 
-### CHARACTERISTICS
+## CHARACTERISTICS
 - Can be used with DOCKER or with a Python Virtual Environment.
 - Scalable to use any Python Framework as Django or Flask.
 - Scalable to add more statistics to each team.
