@@ -15,11 +15,6 @@ class Rank(object):
         - Can implement for more statistics like, goals, shots, etc.
     """
 
-    def __new__(cls):
-        if not hasattr(cls, 'instance'):
-            cls.instance = super(Rank, cls).__new__(cls)
-        return cls.instance
-
     def __init__(self):
         self.rank_teams = {}
 
@@ -85,9 +80,6 @@ class Rank(object):
                     matches = []
                 except AttributeError:
                     print(IncorrectMatchFormat(line))
-                    matches = []
-                except Exception as e:
-                    print(e.args)
                     matches = []
                 finally:
                     if len(matches) == 0:

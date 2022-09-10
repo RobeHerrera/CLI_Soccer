@@ -12,7 +12,6 @@ class MissingInformationTeam(Exception):
         return f'In the match "{self.str_match}" is {self.message}'
 
 
-
 class IncorrectMatchFormat(Exception):
     """
     Exception raised when the match is .

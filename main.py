@@ -16,22 +16,24 @@ class SoccerShell(cmd.Cmd):
     ])
     prompt = "#: "
     rank = Rank()
+
     def do_load(self, arg):
         """
         Load file with the result of the matches
             command: load [FILE] | l [FILE]
             args:
                 -FILE: Location of the TXT file
+        Example:
+            - l inputs/input1.txt
         """
         arg = arg.split()
         if len(arg) == 1:
-            file = arg
+            file = arg[0]
             print(f"Loading file {file}")
-            # self.rank.record_result(file)
+            self.rank.record_result(file)
         else:
             print("Using default file (inputs/input1.txt) ... ")
-            self.rank.record_result('inputs/input1.txt')
-
+            self.rank.record_result('inputs/input2.txt')
 
     def do_quit(self, arg):
         """

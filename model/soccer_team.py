@@ -15,13 +15,14 @@ class Team:
         self.score = score
 
     def __str__(self):
-        return f"{self.name},{self.score}"
+        return f"'{self.name}',{self.score}"
 
+    #
     def __repr__(self):
-        return f"Team('{self.name}',{self.score})"
+        return f"<Team('{self.name}',{self.score})>"
 
-    def __iter__(self):
-        return self.name
+    # def __iter__(self):
+    #     return self.name
 
     def __eq__(self, other):
         """Overrides the default implementation"""

@@ -9,30 +9,21 @@ rank = Rank()
 
 @pytest.fixture
 def happy_path():
-    """ Test when everything is in place, with a small amount of teams"""
+    """ Test when an error in input team occurred """
     happy_path.matches = f"""
-    
 Lions 1   ,Snakes 3
-
-Snakes 3 , Lions 3
+Snakes 3
      """
     happy_path.file_name = 'tests/my_test.txt'
     with open(happy_path.file_name, 'w') as f:
         f.write(happy_path.matches)
 
-    happy_path.data = [
-        {"homeTeam": "Lions", "homeScore": 1, "visitTeam": "Snakes", "visitScore": 3},
-        {"homeTeam": "Snakes", "homeScore": 3, "visitTeam": "Lions", "visitScore": 3}
-    ]
+    happy_path.data = []
 
-    happy_path.scores = {
-        'Lions': Team('Lions', 1),
-        'Snakes': Team('Snakes', 4)
-    }
+    happy_path.scores = {}
 
-    happy_path.table = f"""1. Snakes, 4 pts
-2. Lions, 1 pt
-"""
+    happy_path.table = f""
+
     return happy_path
 
 
