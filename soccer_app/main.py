@@ -30,7 +30,10 @@ class SoccerShell(cmd.Cmd):
         if len(arg) == 1:
             file = arg[0]
             print(f"Loading file {file}")
-            self.rank.record_result(file)
+            try:
+                self.rank.record_result(file)
+            except (IOError, OSError) as e:
+                print(e.args) 
         else:
             print("Using default file (inputs/input1.txt) ... ")
             self.rank.record_result('inputs/input1.txt')

@@ -35,8 +35,8 @@ Console output:
 ## Instructions for using a virtual environment 
 1. Create virtual environment `python3 -m venv myenv`
 2. Activate it `source myenv/bin/activate` or windows CDM `.\myenv\Scripts\activate.bat` or PS `.\myenv\Scripts\Activate.ps1` 
-3. `python -m pip install -r soccer_app/requirements.txt`
-4. `cd soccer_App/`
+3. Aggregate requirements `python -m pip install -r soccer_app/requirements.txt`
+4. `cd soccer_app/`
 5. `python main.py`
 6. Should start the CMD loop.
 
@@ -52,7 +52,9 @@ Add a serial of matches to the ranking table
 - Command: `load [FILE]` | `l [FILE]`
 - Example: `load inputs/input1.txt`
 tip:You can type only `load` or `l` to load the default file `inputs/input1.txt`
-- Exceptions: `Error Format in the Input File, please check your matches in line: {number_line}.` that could happend because some of these cases:
+- Exceptions: 
+- `No such file or directory`
+- `Error Format in the Input File, please check your matches in line: {number_line}.` that could happend because some of these cases:
   - Missing team information.
   - Match format is incorrect.
 
@@ -76,6 +78,13 @@ Exit the application
 - Command: quit | q
 - Example: `q`
 - Output: `exiting ... `
+
+## Testing
+1- Use a virtual environment, please the in the seccion above
+2- Inside `soccer_app` folder run the following command
+3- Run Coverage in verbosity+ mode: `coverage run -m pytest -vv`
+4- Generate report: `coverage report -m`
+![Coverage test](./soccer_app/tests/coverage.PNG)
 
 ## CHARACTERISTICS
 - Can be used with DOCKER or with a Python Virtual Environment.
