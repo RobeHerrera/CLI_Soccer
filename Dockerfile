@@ -15,11 +15,10 @@ RUN mkdir /cli_soccer
 WORKDIR /cli_soccer
 
 # Copy the current directory contents into the container at /cli_soccer
-ADD . /cli_soccer
-ADD main.py .
+ADD ./soccer_app /cli_soccer
 
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
 # Run actual CLI application
-ENTRYPOINT [ "python", "./main.py" ]
+ENTRYPOINT [ "python", "main.py" ]

@@ -52,7 +52,7 @@ class SoccerShell(cmd.Cmd):
             print(self.rank.table_ranking())
 
         else:
-            print('Please load first a file....')
+            print('Please load first a file with matches....')
 
     def emptyline(self):
         """Called when an empty line is entered in response to the prompt.
