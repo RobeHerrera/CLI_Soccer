@@ -17,12 +17,8 @@ class Team:
     def __str__(self):
         return f"'{self.name}',{self.score}"
 
-    #
     def __repr__(self):
         return f"<Team('{self.name}',{self.score})>"
-
-    # def __iter__(self):
-    #     return self.name
 
     def __eq__(self, other):
         """Overrides the default implementation"""

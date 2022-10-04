@@ -1,7 +1,7 @@
 import pytest
 from model.soccer_team import Team
 from unittest import TestCase
-from model.league_stats import Rank
+from controller.league_stats import Rank
 
 # Global instances for all the test case
 rank = Rank()

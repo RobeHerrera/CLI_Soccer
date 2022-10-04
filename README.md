@@ -84,6 +84,8 @@ Exit the application
 2- Inside `soccer_app` folder run the following command
 3- Run Coverage in verbosity+ mode: `coverage run -m pytest -vv`
 4- Generate report: `coverage report -m`
+
+
 ![Coverage test](./soccer_app/tests/coverage.PNG)
 
 ## CHARACTERISTICS

@@ -1,6 +1,6 @@
 #! /usr/bin/python
 import cmd
-from model.league_stats import Rank
+from controller.league_stats import Rank
 
 
 class SoccerShell(cmd.Cmd):
